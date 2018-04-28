@@ -171,7 +171,7 @@ namespace IFilterTextReader
                 }
             }
             
-            if (string.IsNullOrWhiteSpace(fileName))
+            if (UtilDotNet35.string_IsNullOrWhiteSpace(fileName))
                 throw new IFOldFilterFormat("The IFilter does not support the IPersistStream interface, supply a filename to use the IFilter");
 
             // If we get here we probably are using an old IFilter so try to load it the old way
@@ -245,7 +245,7 @@ namespace IFilterTextReader
                         !GetFilterDllAndClassFromPersistentHandler(persistentHandlerClass, out dllName,
                             out filterPersistClass))
                         throw new IFFilterNotFound("Could not find a " +
-                                                   (Environment.Is64BitProcess ? "64" : "32") +
+                                                   (UtilDotNet35.Environment_Is64BitProcess ? "64" : "32") +
                                                    " bits IFilter dll for a file with an '" + extension +
                                                    "' extension");
 

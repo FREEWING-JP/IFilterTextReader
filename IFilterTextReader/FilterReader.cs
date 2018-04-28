@@ -172,10 +172,10 @@ namespace IFilterTextReader
                 _fileName = fileName;
                 _fileStream = File.OpenRead(fileName);
 
-                if (string.IsNullOrWhiteSpace(extension))
+                if (UtilDotNet35.string_IsNullOrWhiteSpace(extension))
                 {
                     extension = Path.GetExtension(fileName);
-                    if (string.IsNullOrWhiteSpace(extension))
+                    if (UtilDotNet35.string_IsNullOrWhiteSpace(extension))
                     {
                         // Try to detect the extension if the file does not have one
                         var fileInfo = FileTypeSelector.GetFileTypeFileInfo(fileName);
@@ -188,11 +188,11 @@ namespace IFilterTextReader
 
                 if (_filter == null)
                 {
-                    if (string.IsNullOrWhiteSpace(extension))
-                        throw new IFFilterNotFound("There is no " + (Environment.Is64BitProcess ? "64" : "32") +
+                    if (UtilDotNet35.string_IsNullOrWhiteSpace(extension))
+                        throw new IFFilterNotFound("There is no " + (UtilDotNet35.Environment_Is64BitProcess ? "64" : "32") +
                                                    " bits IFilter installed for the file '" + Path.GetFileName(fileName) + "'");
 
-                    throw new IFFilterNotFound("There is no " + (Environment.Is64BitProcess ? "64" : "32") +
+                    throw new IFFilterNotFound("There is no " + (UtilDotNet35.Environment_Is64BitProcess ? "64" : "32") +
                                                " bits IFilter installed for the extension '" + extension + "'");
                 }
             
@@ -235,13 +235,13 @@ namespace IFilterTextReader
                             FilterReaderTimeout filterReaderTimeout = FilterReaderTimeout.NoTimeout,
                             int timeout = -1)
         {
-            if (string.IsNullOrWhiteSpace(extension))
+            if (UtilDotNet35.string_IsNullOrWhiteSpace(extension))
                 throw new ArgumentException("The extension cannot be empty", "extension");
 
             _filter = FilterLoader.LoadAndInitIFilter(stream, extension, disableEmbeddedContent, string.Empty, readIntoMemory);
 
             if (_filter == null)
-                throw new IFFilterNotFound("There is no " + (Environment.Is64BitProcess ? "64" : "32") +
+                throw new IFFilterNotFound("There is no " + (UtilDotNet35.Environment_Is64BitProcess ? "64" : "32") +
                                            " bits IFilter installed for the stream with the extension '" + extension + "'");
 
             _includeProperties = includeProperties;
@@ -681,7 +681,7 @@ namespace IFilterTextReader
 
             try
             {
-                if (string.IsNullOrWhiteSpace(propertyVariant.Value.ToString()))
+                if (UtilDotNet35.string_IsNullOrWhiteSpace(propertyVariant.Value.ToString()))
                     return null;
 
                 // Read the string property
